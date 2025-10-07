@@ -6,6 +6,7 @@ import collections
 from src.problemSolvingAgentProgramClass import SimpleProblemSolvingAgentProgram
 from src.graphProblemClass import GraphProblem
 from src.problemClass import *
+from src.nodeClass import *
 
 from src.TreasureMapEnv import *
 
@@ -15,9 +16,9 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
 
   goal = 'Room48'
 
-  def __init__(self, initial_state=None, GraphData=None, goal=None, program=None):
+  def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
     super().__init__(initial_state)
-    self.GraphData=GraphData
+    self.dataGraph=dataGraph
     self.goal=goal
     
     #self.performance=(len(GraphData.nodes())/2)
