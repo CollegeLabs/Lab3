@@ -14,8 +14,6 @@ import streamlit as st
 
 class TreasureMap(SimpleProblemSolvingAgentProgram):
 
-  goal = 'Room48'
-
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
     super().__init__(initial_state)
     self.dataGraph=dataGraph

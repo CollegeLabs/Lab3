@@ -56,43 +56,6 @@ class TreasureMapEnv(Environment):
     else:
         print("There is no one here who could work...")
   
-  def Map(Data):
-    map = Graph(Data)
-
-    net = Network(heading="Lab3. Treasure Map",
-                bgcolor ="#242020",
-                font_color = "white",
-                height = "750px",
-                width = "100%")   # do this
-    
-    net.add_nodes(map.nodes(), title=[str(node) for node in map.nodes()])
-
-    nodeColors={
-    "start":"red",
-    "goal": "green",
-    "frontier": "orange",
-    "expanded":"pink",
-    "Treasure":"yellow"
-    }
-
-    for node in net.nodes:
-        if node['id']=='Room1':
-            node["color"]=nodeColors["start"]
-        elif node['id']=='Room48':
-            node["color"]=nodeColors["goal"]
-
-    edges=[]
-    edges_labels=[]
-
-    for node_source in map.nodes():
-        for node_target, dist in map.get(node_source).items():
-            if set((node_source,node_target)) not in edges:
-                net.add_edge(node_source,node_target, label=str(dist))
-                edges.append(set((node_source,node_target)))
-                edges_labels.append(str(dist))
-
-    #net.show("graph1.html", notebook=False)
-
   def Run():
       BFSAP1=BestFirstSearchAgentProgram()
 

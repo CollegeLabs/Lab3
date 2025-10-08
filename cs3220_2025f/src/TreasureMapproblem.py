@@ -7,16 +7,14 @@ class TreasureMapProblem(Problem):
     The state space should be included in a subclass
     Then you will create instances of your subclass and solve them with the various search functions."""
 
-    def __init__(self, initial, goal=None):
-        self.initial = initial
-        self.goal = goal
+    def __init__(self, initial, goal=None, graph=None):
+        super().__init__(initial, goal)
+        self.graph = graph
 
     def actions(self, state):
-
-        action = ['Move_Right', 'Move_Left', 'Move_Up', 'Move_Down', 'Grab']
+        return list(self.graph.origin[state].keys())
 
     def result(self, state, action):
-        #really not sure what to put here now
-        print('Hello World!')
+        return self.graph.origin[state][action]
 
                 
