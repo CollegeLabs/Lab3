@@ -1,6 +1,5 @@
 from src.problemClass import Problem
 from src.graphClass import Graph
-from src.navProblemSolvingAgentClass import navProblemSolvingAgent
 
 class Task1ProblemGraph(Problem):
     def __init__(self, initial, goal, graph):

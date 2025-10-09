@@ -1,8 +1,8 @@
 from pyvis.network import Network
-from src.Lab3Task1Classes import *
 from src.Lab3Task1Environment import *
 from data.task1mapData import *
 from src.agents import ProblemSolvingNavAgentBFS
+import streamlit as st
 
 task1Graph = Task1Graph(task1WorldDicts, Task1Locations()) 
 
@@ -39,4 +39,8 @@ Task1 = Task1ProblemGraph(initState, goalState, task1Graph)
 Task1SolveAgent=ProblemSolvingNavAgentBFS(initState, task1Graph, goalState)
 
 #print(Task1SolveAgent("LLLL"))
-Task1SolveAgent.run()
+#Task1SolveAgent.run()
+print(Task1SolveAgent("LLLL"))
+st.write(Task1SolveAgent("LLLL"))
+print(Task1SolveAgent("RRRR"))
+st.write(Task1SolveAgent("RRRR"))
