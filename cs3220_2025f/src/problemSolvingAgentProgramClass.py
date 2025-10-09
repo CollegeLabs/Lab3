@@ -1,3 +1,4 @@
+import streamlit as st
 class SimpleProblemSolvingAgentProgram:
   #Abstract framework for a problem-solving agent
   def __init__(self, initial_state=None):
@@ -43,6 +44,7 @@ class SimpleProblemSolvingAgentProgram:
                 return None
         else:
               print("I have already don my work. Find someone else")
+              st.write("I have already done my work. Find someone else")
               
         #return self.seq.pop(0)
         return None
