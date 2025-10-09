@@ -1,6 +1,7 @@
 #How do we decide which node from the frontier to expand next?
 from src.nodeClass import Node
 from queue import PriorityQueue
+import streamlit as st
 
 nodeColors={
     "start":"red",
@@ -26,6 +27,7 @@ def BestFirstSearchAgentProgram(f=None):
         node = frontier.get()[1]
         #node.color=nodeColors["expanded"]
         print(node)
+        st.write(node)
 
         if problem.goal_test(node.state):
           node.color=nodeColors["goal"]

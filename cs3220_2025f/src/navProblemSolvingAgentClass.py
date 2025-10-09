@@ -2,6 +2,7 @@ import collections
 
 from src.problemSolvingAgentProgramClass import SimpleProblemSolvingAgentProgram
 from src.graphProblemClass import GraphProblem
+import streamlit as st
 
 class navProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
@@ -41,6 +42,7 @@ class navProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
     seq = self.program(problem)
     solution=self.actions_path(seq.path())
     print("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
+    st.text("Solution (a sequence of actions) from the initial state to a goal: {}".format(solution))
     return solution
   
   def actions_path(self, p):
@@ -71,4 +73,5 @@ class navProblemSolvingAgent(SimpleProblemSolvingAgentProgram):
       return self.seq
     else:
       print ("I have the only goal = {}". format(self.goal))
+      st.text("I have the only goal = {}". format(self.goal))
       return super().__call__(self.state)
