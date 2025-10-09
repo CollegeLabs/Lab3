@@ -146,7 +146,7 @@ room48=''.join(map(lambda x: x[0],(Locvalue[7],Locvalue[7]))),
 
 
 
-TreasureMap = (dict(
+Maze = (dict(
     Room1=dict(Move_Right=room2,Grab=room1),
     Room2=dict(Move_Right=room3,Move_Left=room1,Grab=room2),
     Room3=dict(Move_Left=room2,move_Up=room4,Grab=room3),

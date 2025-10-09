@@ -2,6 +2,7 @@ from src.environmentClass import Environment
 from src.graphClass import Graph
 from pyvis.network import Network
 from src.PS_agentPrograms import BestFirstSearchAgentProgram
+import random
 
 class TreasureMapEnv(Environment):
   def __init__(self, navGraph):
@@ -46,7 +47,7 @@ class TreasureMapEnv(Environment):
           if agent.alive:
             #with agent.state because for PS Agent we don't need to percive
             action=agent.seq.pop(0)
-            print("Agent decided to do {}.".format(action))
+            print("Agent decided to move to {}.".format(action))
             actions.append(action)
           else:
             actions.append("")
@@ -55,8 +56,9 @@ class TreasureMapEnv(Environment):
           self.execute_action(agent, action)
     else:
         print("There is no one here who could work...")
-  
-  def Run():
-      BFSAP1=BestFirstSearchAgentProgram()
 
+  def add_treasure(self, treasure):
+    #find way to change values based on number of rooms something like
+    #len(dataGraph.nodes())
+    random.choice(self.location)
     

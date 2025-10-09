@@ -19,7 +19,7 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
     self.dataGraph=dataGraph
     self.goal=goal
     
-    #self.performance=(len(GraphData.nodes())/2)
+    self.performance=(len(dataGraph.nodes()))/2
     
 
     if program is None or not isinstance(program, collections.abc.Callable):
@@ -84,12 +84,12 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
       return super().__call__(self.state)
 
   def actions(self, A):
-      return list(self.graph.origin[A].keys())
+      return list(self.dataGraph.origin[A].keys())
       #return list(self.graph.get(A).keys())
 
   def result(self, state, action):
       #A transition model
-      return self.graph.origin[state][action]
+      return self.dataGraph.origin[state][action]
       #return self.graph.get(state).get(action)
 
   def path_cost(self, cost_so_far, A, action, B):
