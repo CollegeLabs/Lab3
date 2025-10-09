@@ -2,7 +2,7 @@ from pyvis.network import Network
 from src.Lab3Task1Environment import *
 from data.task1mapData import *
 from src.agents import ProblemSolvingNavAgentBFS
-import streamlit as st
+import streamlit.components.v1 as components
 
 task1Graph = Task1Graph(task1WorldDicts, Task1Locations()) 
 
@@ -42,4 +42,7 @@ Task1SolveAgent=ProblemSolvingNavAgentBFS(initState, task1Graph, goalState)
 #Task1SolveAgent.run()
 Task1SolveAgent("LLLL")
 Task1SolveAgent("RRRR")
+with open("Task1 Graph.html", 'r', encoding='utf-8') as f:
+    html_string=f.read()
+components.html(html_string, height=750, width=1000)
 #Task1SolveAgent2=ProblemSolvingNavAgentBFS(initState, task1Graph, goalState)
