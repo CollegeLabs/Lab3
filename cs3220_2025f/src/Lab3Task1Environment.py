@@ -1,7 +1,6 @@
 from src.problemClass import Problem
 from src.graphClass import Graph
-initState = "LLLL" #boat, wolf, goat, cabbage
-goalState = "RRRR"
+from src.navProblemSolvingAgentClass import navProblemSolvingAgent
 
 class Task1ProblemGraph(Problem):
     def __init__(self, initial, goal, graph):
@@ -50,3 +49,4 @@ class Task1Graph(Graph):
     
     def getLocation(self, a):
         return self.locations.get(a)
+    

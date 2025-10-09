@@ -1,8 +1,8 @@
 from pyvis.network import Network
 from src.Lab3Task1Classes import *
 from src.Lab3Task1Environment import *
-from src.graphClass import Graph
 from data.task1mapData import *
+from src.agents import ProblemSolvingNavAgentBFS
 
 task1Graph = Task1Graph(task1WorldDicts, Task1Locations()) 
 
@@ -14,12 +14,6 @@ net_Task1 = Network(
     width = "100%",
     directed = True
 )
-nodeColors={
-    "start":"red",
-    "goal": "green",
-    "frontier": "orange",
-    "expanded":"pink"
-}
 
 for node in task1Graph.nodes():
     x,y=task1Graph.getLocation(node)
@@ -30,11 +24,19 @@ edge_weights = {(k, v2) : k2 for k, v in task1WorldDicts.items() for k2, v2 in v
 edges=[]
 for node_source in task1Graph.nodes():
     for node_target, actCost in task1Graph.get(node_source).items():
-        #action=vacuumWorld[node_source]
-        #print(action)
         if (node_source,node_target) not in edges and (node_target, node_source):
-            #net_VacuumWorld.add_edge(node_source,node_target, label=str(action))
             net_Task1.add_edge(node_source,node_target, label=edge_weights[(node_source,node_target)])
             edges.append((node_source,node_target))
 
-net_Task1.show("Task1 Graph.html", notebook=False)
+#net_Task1.show("Task1 Graph.html", notebook=False)
+
+initState='LLLL'
+goalState='RRRR'
+illegalStates = ["LRRR", "LRRB", "LBRR", "LRRL", "LLRR", "RLLR", "RRLL", "RLLB", "RBLL", "RLLL"]
+#can't leave goat and cabbage or wolf and goat alone together (also covering all 3 without boat just in case)
+
+Task1 = Task1ProblemGraph(initState, goalState, task1Graph)
+Task1SolveAgent=ProblemSolvingNavAgentBFS(initState, task1Graph, goalState)
+
+#print(Task1SolveAgent("LLLL"))
+Task1SolveAgent.run()
