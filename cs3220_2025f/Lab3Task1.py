@@ -71,10 +71,14 @@ def buildGraph(graphData, nodeColorsDict):
     #     node['color']="white"
     # add the edges
     edges=[]
+    edges_labels=[]
     for node_source in graphData.nodes():
-        for node_target, dist in graphData.get(node_source).items():
-            if set((node_source,node_target)) not in edges:
-                edges.append(set((node_source,node_target)))                
+        for action, node_target in task1WorldDicts.get(node_source).items():
+            if set((node_source,action)) not in edges:
+                net_Task1.add_edge(node_source, node_target, label=str(action)) 
+                #dist is the actual node target while node target is the action to get to the next node
+                edges.append(set((node_source,action)))
+                edges_labels.append(str(node_target))               
     g.add_edges_from(edges)
     
     # generate the graph
