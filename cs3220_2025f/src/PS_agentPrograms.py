@@ -25,7 +25,7 @@ def BestFirstSearchAgentProgram(f=None):
       while frontier:
         node = frontier.get()[1]
         #node.color=nodeColors["expanded"]
-        print(node)
+        #print(node) #commented this out since it looks like it was printing on streamlit too (and was getting annoying)
 
         if problem.goal_test(node.state):
           node.color=nodeColors["goal"]
