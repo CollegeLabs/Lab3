@@ -101,13 +101,13 @@ def main():
         st.header("Problem Solving Agents: TreasureMap Navigation Problem")
         st.header("_Initial Env._", divider=True)
         
-        TreasureGraph = Graph(GraphData)
+        TreasureGraph = TreasureMapGraph(GraphData)
         nodeColors=makeDefaultColors(TreasureGraph.graph_dict)
         
         initState="Room1"
         goalState="Room48"
         
-        re=TreasureMapEnv()
+        re=TreasureMapEnv(TreasureGraph)
         BFSnavAgent=ProblemSolvingNavAgentBFS(initState,TreasureGraph,goalState)        
                       
         re.add_thing(BFSnavAgent)
