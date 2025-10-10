@@ -139,6 +139,6 @@ def main():
             drawBtn(st.session_state["env"],st.session_state["agent"], st.session_state["nodeColors"])
        
     
-#if __name__ == '__main__':
-#    main()
+if __name__ == '__main__':
+    main()
     
