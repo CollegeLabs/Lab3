@@ -50,7 +50,7 @@ def AgentStep(opt):
     st.session_state["clicked"] = True
         
         
-def buildGraph(graphData, nodeColorsDict):
+def buildGraph(graphData, nodeColorsDict, worldDict):
     net_Task1 = Network(
     bgcolor ="#242020",
     font_color = "white",
@@ -73,7 +73,7 @@ def buildGraph(graphData, nodeColorsDict):
     edges=[]
     edges_labels=[]
     for node_source in graphData.nodes():
-        for action, node_target in task1WorldDicts.get(node_source).items():
+        for action, node_target in worldDict.get(node_source).items():
             if set((node_source,action)) not in edges:
                 net_Task1.add_edge(node_source, node_target, label=str(action)) 
                 #dist is the actual node target while node target is the action to get to the next node
@@ -130,7 +130,7 @@ def main():
         st.header("State of the Environment", divider="red")
         nodeColors[Task1SolveAgent.state]="red"
         nodeColors[Task1SolveAgent.goal]="green"
-        buildGraph(task1Graph, nodeColors) 
+        buildGraph(task1Graph, nodeColors, task1WorldDicts) 
         st.info(f"The Agent in: {Task1SolveAgent.state} with performance {Task1SolveAgent.performance}.")
         st.info(f"The Agent goal is: {Task1SolveAgent.goal} .")
                 
