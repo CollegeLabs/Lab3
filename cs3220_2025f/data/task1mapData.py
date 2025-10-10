@@ -45,15 +45,15 @@ RRRL=''.join(map(lambda x: x[0], (boatLocations[1], objectLocations[2], objectLo
 RRRB=''.join(map(lambda x: x[0], (boatLocations[1], objectLocations[2], objectLocations[2], objectLocations[1]))) #1221
 RRRR=''.join(map(lambda x: x[0], (boatLocations[1], objectLocations[2], objectLocations[2], objectLocations[2]))) #1222
 
-RLEB=RLLB #initializing 'eaten' as left since agent wants everything to be on the right anyways
-RBLE=RBLL
-LLRE=LLRR
-LREL=LRLL
-RLER=RLLR
-RRLE=RRLL
+#RLEB=RLLB #initializing 'eaten' as left since agent wants everything to be on the right anyways
+#RBLE=RBLL
+#LLRE=LLRR
+#LREL=LRLL
+#RLER=RLLR
+#RRLE=RRLL
 #scrapped the above since "cannot unpack non-iterable NoneType object" apparently
-keylist1=[LLLL, LLLB, LLLR, LLBL, LLBR, LLRL, LLRB, LLRR, LBLL, LBLR, LBRL, LBRR, LRLL, LRLB, LRLR, LRBL, LRBR, LRRL, LRRB, LRRR,
-         RLLL, RLLB, RLLR, RLBL, RLBR, RLRL, RLRB, RLRR, RBLL, RBLR, RBRL, RBRR, RRLL, RRLB, RRLR, RRBL, RRBR, RRRL, RRRB, RRRR]
+#keylist1=[LLLL, LLLB, LLLR, LLBL, LLBR, LLRL, LLRB, LLRR, LBLL, LBLR, LBRL, LBRR, LRLL, LRLB, LRLR, LRBL, LRBR, LRRL, LRRB, LRRR,
+#         RLLL, RLLB, RLLR, RLBL, RLBR, RLRL, RLRB, RLRR, RBLL, RBLR, RBRL, RBRR, RRLL, RRLB, RRLR, RRBL, RRBR, RRRL, RRRB, RRRR]
 #renamed the above to keylist1 just to try and use the bottom case automatically when retrying the agent
 ''' keeping the original thing here
 task1WorldDicts = dict(
