@@ -60,28 +60,21 @@ def buildGraph(graphData, nodeColorsDict, worldDict):
 )
     nodes=graphData.nodes()
     # initialize graph
-    g = nx.Graph()
+    g = nx.MultiDiGraph()
     
     # add the nodes
     for node in nodes:
         g.add_node(node, color=nodeColorsDict[node])
     
-    net_Task1.add_nodes(graphData.nodes(), title=[str(node) for node in graphData.nodes()])
-    # g.add_nodes_from(nodes)
-    # for node in g:
-    #     #node["color"]=nodeColorsDict[node]
-    #     node['color']="white"
-    # add the edges
     edges=[]
     edges_labels=[]
     for node_source in graphData.nodes():
         for action, node_target in worldDict.get(node_source).items():
             if set((node_source,action)) not in edges:
-                net_Task1.add_edge(node_source, node_target, label=str(action)) 
+                g.add_edge(node_source, node_target, label=str(action)) 
                 #dist is the actual node target while node target is the action to get to the next node
-                edges.append(set((node_source,action)))
-                edges_labels.append(str(node_target))               
-    g.add_edges_from(edges)
+                edges.append(set((node_source,node_target)))
+                edges_labels.append(str(action))
     
     # generate the graph
     net_Task1.from_nx(g)
@@ -97,7 +90,7 @@ def makeDefaultColors(dictData):
         
     
 def main():
-    
+    net_Task1.show("Task1 Graph.html", notebook=False)
         
     if "clicked" not in st.session_state:
         st.session_state["clicked"] = False
@@ -116,16 +109,13 @@ def main():
         st.header("Problem Solving Agents: Task1 Problem")
         st.header("_Initial Env._", divider=True)
         
-        #TreasureGraph = TreasureMapGraph(GraphData)
         task1Graph = Task1Graph(task1WorldDicts, Task1Locations())
         nodeColors=makeDefaultColors(task1Graph.graph_dict)
         
         initState="LLLL"
         goalState="RRRR"
         
-        #re=TreasureMapEnv(TreasureGraph)
         re=Task1Env(task1Graph)
-        #BFSnavAgent=ProblemSolvingNavAgentBFS(initState,TreasureGraph,goalState)
         Task1SolveAgent=ProblemSolvingNavAgentBFS(initState, task1Graph, goalState)        
                       
         re.add_thing(Task1SolveAgent)
