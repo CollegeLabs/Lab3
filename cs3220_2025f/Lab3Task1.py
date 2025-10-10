@@ -75,7 +75,7 @@ def buildGraph(graphData, nodeColorsDict, worldDict):
     for node_source in graphData.nodes():
         for action, node_target in worldDict.get(node_source).items():
             if set((node_source,action)) not in edges:
-                net_Task1.add_edge(node_source, node_target, label=str(action)) 
+                net_Task1.add_edge(node_source, node_target)#, label=str(action)) 
                 #dist is the actual node target while node target is the action to get to the next node
                 edges.append(set((node_source,action)))
                 edges_labels.append(str(node_target))               
