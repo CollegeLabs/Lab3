@@ -40,7 +40,7 @@ def AgentStep(opt):
         st.info("Current Agent performance {}:".format(a.performance))
         c[a.state]="orange"
         st.info("State of the Environment:")
-        buildGraph(e.status, c) 
+        buildGraph(e.status, c, task1WorldDicts) 
     else:
         if a.state==a.goal:
             st.success(" Agent now at the goal state: {}.".format(a.state))
@@ -90,7 +90,7 @@ def makeDefaultColors(dictData):
         
     
 def main():
-    net_Task1.show("Task1 Graph.html", notebook=False)
+    #net_Task1.show("Task1 Graph.html", notebook=False)
         
     if "clicked" not in st.session_state:
         st.session_state["clicked"] = False

@@ -92,7 +92,7 @@ class Task1Env(Environment):
     if not self.is_done():
         actions = []
         for agent in self.agents:
-          if agent.alive:
+          if (agent.alive):
             #with agent.state because for PS Agent we don't need to percive
             action=agent.seq.pop(0)
             print("Agent decided to move to {}.".format(action))
