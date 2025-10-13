@@ -49,7 +49,10 @@ class TreasureMapGraph(Graph):
       "goal": "green",
       "frontier": "orange",
       "expanded":"pink",
-      "Treasure":"yellow"
+      "Pile_of_Gold":"yellow",
+      "Diamond":"yellow",
+      "Flyer_for_100_free_pizzas":"yellow",
+      "Twenty_extra_point_for_cs3220_final_exam":"yellow"
       }
 
       for node in net.nodes:

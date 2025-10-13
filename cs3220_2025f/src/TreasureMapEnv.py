@@ -5,6 +5,7 @@ from src.PS_agentPrograms import BestFirstSearchAgentProgram
 import random
 from data.TreasureMapData import *
 from src.Locations import *
+from src.thingClass import Thing
 
 class TreasureMapEnv(Environment):
   def __init__(self, navGraph):
@@ -12,6 +13,8 @@ class TreasureMapEnv(Environment):
     self.status = navGraph
     self.treasures = []
     
+  def list_things_at(self, location, thingClass=Thing):
+    return [thing for thing in self.treasures if thing.location == location and isinstance(thing, thingClass)]  
 
   def percept(self, agent):
     #Returns the agent's location, and the location status (Dirty/Clean).
@@ -61,8 +64,6 @@ class TreasureMapEnv(Environment):
         print("There is no one here who could work...")
 
   def add_treasure(self, treasure, location=None):
-    #find way to change values based on number of rooms something like len(dataGraph.nodes())
-    #self.treasure.append(treasure)
     from src.agentClass import Agent
     if treasure in self.agents:
       print("Can't add the same agent twice")
@@ -77,7 +78,10 @@ class TreasureMapEnv(Environment):
     else:
       if not isinstance(treasure, Agent):
         treasure.location = random.choice(list(Rooms.keys()))
-        self.treasures.append(treasure)
+        self.state = treasure.name
+        print("treasure location", treasure.location)
+        print("current state:", self.state)
+
 
 
     

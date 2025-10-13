@@ -8,9 +8,11 @@ class Node:
     and  the total path_cost (also known as g) to reach the node. 
     You will not need to     subclass this class."""
 
-    def __init__(self, state, parent=None, action=None, path_cost=0):
+    def __init__(self, state, parent=None, action=None, path_cost=0, ):
         """Create a search tree Node, derived from a parent by an action."""
         self.state = state
+        #if (self.state == TL):
+        #   self.state = TM
         self.parent = parent
         self.action = action
         self.path_cost = path_cost

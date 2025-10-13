@@ -119,8 +119,8 @@ def main():
         Env2.add_treasure(flyer_for_100_free_pizzas)
         Env2.add_treasure(twenty_extra_point_for_cs3220_final_exam)
 
-        T = random.choice([Pile_of_Gold, Diamond, flyer_for_100_free_pizzas, twenty_extra_point_for_cs3220_final_exam])
-        Twogoals = [T, 'room48']
+        T = random.choice(["Pile_of_Gold", "Diamond", "flyer_for_100_free_pizzas", "twenty_extra_point_for_cs3220_final_exam"])
+        Twogoals = ['room48']
         BFSAP2 = ProblemSolvingNavAgentBFS(initial_state,TreasureGraph,Twogoals)       
                       
         Env2.add_thing(BFSAP2)

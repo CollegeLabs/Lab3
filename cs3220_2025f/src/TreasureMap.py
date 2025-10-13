@@ -9,10 +9,11 @@ from src.problemClass import *
 from src.nodeClass import *
 
 from src.TreasureMapEnv import *
+from src.Treasures import *
 
 import streamlit as st
 
-class TreasureMap(SimpleProblemSolvingAgentProgram):
+class TreasureMap:
 
   def __init__(self, initial_state=None, dataGraph=None, goal=None, program=None):
     super().__init__(initial_state)
@@ -33,8 +34,18 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
 
   def update_state(self, state, percept):
     return percept
+  
+  def update_location(self, location, percept):
+    return percept
 
   def formulate_goal(self, state):
+    if self.goal is not None:
+      return self.goal
+    else:
+      print("No goal! can't work!")
+      return None
+    
+  def formulate_goal_L(self, location):
     if self.goal is not None:
       return self.goal
     else:
@@ -46,6 +57,11 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
     #instance of Vacuum ProblemClass
     problem = GraphProblem(state,goal,self.dataGraph)
     return problem  
+  
+  def formulate_problem_L(self, location, goal):
+    #instance of Vacuum ProblemClass
+    problem = GraphProblem(location,goal,self.dataGraph)
+    return problem 
 
   def search(self, problem):
     seq = self.program(problem)
@@ -72,9 +88,19 @@ class TreasureMap(SimpleProblemSolvingAgentProgram):
         self.state = self.update_state(self.state, percept)
         goal = current_goal
         problem = self.formulate_problem(self.state, goal)
+        self.state = self.update_state(self.state, percept)
         self.seq.append (self.search(problem))
-        percept=current_goal
         self.goal.remove(goal)
+        """
+        if self.list_thing_at(self.location, thingClass=Gold):
+           self.goal.remove(goal)
+        elif self.list_thing_at(self.location, thingClass=D):
+           self.goal.remove(goal)
+        elif self.list_thing_at(self.location, thingClass=Pizza):
+           self.goal.remove(goal)
+        elif self.list_thing_at(self.location, thingClass=CSPoints):
+           self.goal.remove(goal)
+           """
         print("goal list:", self.goal)
       if not self.seq:
                 return None
