@@ -3,11 +3,14 @@ from src.graphClass import Graph
 from pyvis.network import Network
 from src.PS_agentPrograms import BestFirstSearchAgentProgram
 import random
+from data.TreasureMapData import *
+from src.Locations import *
 
 class TreasureMapEnv(Environment):
   def __init__(self, navGraph):
     super().__init__()
     self.status = navGraph
+    self.treasures = []
     
 
   def percept(self, agent):
@@ -57,8 +60,24 @@ class TreasureMapEnv(Environment):
     else:
         print("There is no one here who could work...")
 
-  def add_treasure(self, treasure):
-    #find way to change values based on number of rooms something like
-    #len(dataGraph.nodes())
-    random.choice(self.location)
+  def add_treasure(self, treasure, location=None):
+    #find way to change values based on number of rooms something like len(dataGraph.nodes())
+    #self.treasure.append(treasure)
+    from src.agentClass import Agent
+    if treasure in self.agents:
+      print("Can't add the same agent twice")
+    else:
+      if isinstance(treasure, Agent):
+        print("Welcome!")
+        treasure.performance = 4
+        treasure.location = location if location is not None else self.default_location(treasure)
+        self.agents.append(treasure)
+    if treasure in self.treasures and treasure.location==location:
+      print("Can't add the same agent twice")
+    else:
+      if not isinstance(treasure, Agent):
+        treasure.location = random.choice(list(Rooms.keys()))
+        self.treasures.append(treasure)
+
+
     

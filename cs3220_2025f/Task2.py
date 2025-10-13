@@ -9,6 +9,7 @@ from src.TreasureMapGraph import *
 from src.TreasureMapproblem import *
 from data.TreasureMapData import *
 from src.agents import *
+from src.Treasures import *
 
 
 def drawBtn(e,a,c):
@@ -41,7 +42,7 @@ def AgentStep(opt):
     
         
 def buildGraph(graphData, nodeColorsDict):
-    netRomania = Network(
+    net = Network(
                 bgcolor ="#242020",
                 font_color = "white",
                 height = "750px",
@@ -66,9 +67,9 @@ def buildGraph(graphData, nodeColorsDict):
     g.add_edges_from(edges)
     
     # generate the graph
-    netRomania.from_nx(g)
+    net.from_nx(g)
     
-    netRomania.save_graph('L3_TreasureMap.html')
+    net.save_graph('L3_TreasureMap.html')
     HtmlFile = open(f'L3_TreasureMap.html', 'r', encoding='utf-8')
     components.html(HtmlFile.read(), height = 1200,width=1000)
     
@@ -104,21 +105,33 @@ def main():
         TreasureGraph = TreasureMapGraph(GraphData)
         nodeColors=makeDefaultColors(TreasureGraph.graph_dict)
         
-        initState="Room1"
-        goalState="Room48"
+        initial_state = 'Room1'
         
-        re=TreasureMapEnv(TreasureGraph)
-        BFSnavAgent=ProblemSolvingNavAgentBFS(initState,TreasureGraph,goalState)        
+        Env2=TreasureMapEnv(TreasureGraph)
+        Pile_of_Gold = Gold()
+        Diamond = Diamond()
+        flyer_for_100_free_pizzas = Pizza()
+        twenty_extra_point_for_cs3220_final_exam = CSPoints()
+
+
+        Env2.add_treasure(Pile_of_Gold)
+        Env2.add_treasure(Diamond)
+        Env2.add_treasure(flyer_for_100_free_pizzas)
+        Env2.add_treasure(twenty_extra_point_for_cs3220_final_exam)
+
+        T = random.choice([Pile_of_Gold, Diamond, flyer_for_100_free_pizzas, twenty_extra_point_for_cs3220_final_exam])
+        Twogoals = [T, 'room48']
+        BFSAP2 = ProblemSolvingNavAgentBFS(initial_state,TreasureGraph,Twogoals)       
                       
-        re.add_thing(BFSnavAgent)
+        Env2.add_thing(BFSAP2)
         st.header("State of the Environment", divider="red")
-        nodeColors[BFSnavAgent.state]="red"
-        nodeColors[BFSnavAgent.goal]="green"
+        nodeColors[BFSAP2.state]="red"
+        nodeColors[BFSAP2.goal]="green"
         buildGraph(TreasureGraph, nodeColors) 
-        st.info(f"The Agent in: {BFSnavAgent.state} with performance {BFSnavAgent.performance}.")
-        st.info(f"The Agent goal is: {BFSnavAgent.goal} .")
+        st.info(f"The Agent in: {BFSAP2.state} with performance {BFSAP2.performance}.")
+        st.info(f"The Agent goal is: {BFSAP2.goal} .")
                 
-        drawBtn(re,BFSnavAgent,nodeColors)
+        drawBtn( Env2,BFSAP2,nodeColors)
     
             
         
