@@ -3,7 +3,7 @@ from src.thingClass import Thing
 class Gold(Thing):
     Thing.location=None
 
-class Diamond(Thing):
+class D(Thing):
     Thing.location=None
 
 class Pizza(Thing):

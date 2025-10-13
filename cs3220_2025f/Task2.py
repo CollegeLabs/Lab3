@@ -109,7 +109,7 @@ def main():
         
         Env2=TreasureMapEnv(TreasureGraph)
         Pile_of_Gold = Gold()
-        Diamond = Diamond()
+        Diamond = D()
         flyer_for_100_free_pizzas = Pizza()
         twenty_extra_point_for_cs3220_final_exam = CSPoints()
 
