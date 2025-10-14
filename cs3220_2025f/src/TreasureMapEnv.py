@@ -78,9 +78,9 @@ class TreasureMapEnv(Environment):
     else:
       if not isinstance(treasure, Agent):
         treasure.location = random.choice(list(Rooms.keys()))
-        self.state = treasure.name
-        print("treasure location", treasure.location)
-        print("current state:", self.state)
+        #self.state = treasure.name
+        #print("treasure location", treasure.location)
+        #print("current state:", self.state)
 
 
 
