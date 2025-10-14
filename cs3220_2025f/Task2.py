@@ -123,7 +123,7 @@ def main():
         #Twogoals = [T, 'room48']
         Twogoals = 'Room48'
         TL = T.location
-        TM = T.name
+        #TM = T.name
 
         BFSAP2 = ProblemSolvingNavAgentBFS(initial_state,TreasureGraph,Twogoals)
         BFSAP2.formulate_goal(BFSAP2.state)
